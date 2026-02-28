@@ -3,9 +3,11 @@ import pygame
 from config import Config
 from rays import raytracing
 rt = raytracing()
+from scene import movement
 
 class Window():
     def __init__(self):
+        movement()
         self.c = Config()
         self.running = True
         pygame.init()

@@ -4,13 +4,14 @@ class Config():
     screenSize = 1
     cameraPos = (0,0,-1)
     cameraFov = 70
-    sphereCoordsRadius = (0,0,5,2)
-    objects = [sphereCoordsRadius]
+    sphereCoordsRadiusMass = [[0,0,5],2,10]
+    secondSphere = [[-1,2,3],1,2.5]
+    objects = [sphereCoordsRadiusMass,secondSphere]
     #
     side = 500
     halfSide = side/2
     # ray intersection tolerance in radians (use larger to be more permissive)
-    ray_tolerance = 36000/side**2
+    ray_tolerance = 0.045
     #
     WHITE = (255,255,255)
     BLUE = (0,0,255)

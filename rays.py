@@ -2,10 +2,12 @@
 import math
 import time
 from config import Config
+from scene import movement
 
 class raytracing():
     
     def rayTracing(self):
+        self.move = movement()
         self.c = Config()
         #self.cameraPos = self.c.cameraPos
         # convert FOV from degrees to radians before using it in trig functions
@@ -27,9 +29,9 @@ class raytracing():
             return (v[0]/l, v[1]/l, v[2]/l)
         def _dot(a,b):
             return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]
-        for row in range(0,self.c.side,int(self.c.side/40)):
+        for row in range(0,self.c.side,int(self.c.side/50)):
             #print(row)
-            for p in range(0,self.c.side,int(self.c.side/40)):
+            for p in range(0,self.c.side,int(self.c.side/20)):
                 p = [row,p,False]
                 
                 dx = p[0] - self.c.halfSide
@@ -52,24 +54,25 @@ class raytracing():
                         hit = True
                         break
                 p[2] = hit
-                print('yo we done yet?',p[0]*self.c.side,' out of like ', self.c.side**2)
+                #print('yo we done yet?',p[0]*self.c.side,' out of like ', self.c.side**2)
                 screen.append(p)
         print('frame done')
         return screen
     
     def buildObjects(self):
         collidePoints = []
-        for obj in self.c.objects:
-            radius = obj[3]
+        for obj in getattr(self.move,'objects', self.c.objects):
+            print(obj)
+            radius = obj[1]
             for phi in range(0,180,15):
                 for theta in range(0,360,15):
                     xProj = radius * math.sin(math.radians(phi)) * math.cos(math.radians(theta))
                     yProj = radius * math.sin(math.radians(phi)) * math.sin(math.radians(theta))
                     zProj = radius * math.cos(math.radians(phi))
 
-                    point = (obj[0] + xProj,
-                            obj[1] + yProj,
-                            obj[2] + zProj)
+                    point = (obj[0][0] + xProj,
+                            obj[0][1] + yProj,
+                            obj[0][2] + zProj)
                     #print(point)
                     collidePoints.append(point)
         return collidePoints
