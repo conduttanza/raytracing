@@ -29,7 +29,7 @@ class raytracing():
             return (v[0]/l, v[1]/l, v[2]/l)
         def _dot(a,b):
             return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]
-        for row in range(0,self.c.side,int(self.c.side/50)):
+        for row in range(0,self.c.side,int(self.c.side/20)):
             #print(row)
             for p in range(0,self.c.side,int(self.c.side/20)):
                 p = [row,p,False]

@@ -3,11 +3,12 @@ class Config():
     #OBJECTS
     screenSize = 1
     cameraPos = (0,0,-1)
-    cameraFov = 70
+    cameraFov = 50
     sphereCoordsRadiusMass = [[0,0,5],2,10]
     secondSphere = [[-1,2,3],1,2.5]
     objects = [sphereCoordsRadiusMass,secondSphere]
     #
+    rayTracing = False
     side = 500
     halfSide = side/2
     # ray intersection tolerance in radians (use larger to be more permissive)

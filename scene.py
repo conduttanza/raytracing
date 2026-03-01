@@ -5,7 +5,7 @@ from threading import Thread
 import time
 
 class movement():
-    def __init__(self,init_v1=(0.0365,0.0183,0),init_v2=(-0.146,-0.073,0)):
+    def __init__(self,init_v1=(1.44, 0, 0.72),init_v2=(-5.77,0,-2.88)):
         self.c = Config()
         self.objects = self.c.objects           # reference the list in config
         obj1, obj2 = self.objects[0], self.objects[1]
@@ -19,7 +19,7 @@ class movement():
         self.v2 = init_v2
 
         self.dt = 0.01        # timestep
-        self.G  = 10**-2        # gravitational constant (choose 1 for simplicity)
+        self.G  = 10        # gravitational constant (choose 1 for simplicity)
 
         Thread(target=self.run, daemon=True).start()
 
