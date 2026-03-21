@@ -7,13 +7,14 @@ from scene import movement
 class raytracing():
     
     def rayTracing(self):
+        
         self.move = movement()
         self.c = Config()
         #self.cameraPos = self.c.cameraPos
         # convert FOV from degrees to radians before using it in trig functions
         self.cameraFov = math.radians(self.c.cameraFov)
         screen = []
-
+        self.interval = int(self.c.side/40)
         #collisionPoints = self.buildObjects()
         #print(collisionPoints)
         collisionPoints = self.buildObjects()
@@ -29,9 +30,9 @@ class raytracing():
             return (v[0]/l, v[1]/l, v[2]/l)
         def _dot(a,b):
             return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]
-        for row in range(0,self.c.side,int(self.c.side/20)):
+        for row in range(0,self.c.side,self.interval):
             #print(row)
-            for p in range(0,self.c.side,int(self.c.side/20)):
+            for p in range(0,self.c.side,self.interval):
                 p = [row,p,False]
                 
                 dx = p[0] - self.c.halfSide
@@ -54,14 +55,15 @@ class raytracing():
                         hit = True
                         break
                 p[2] = hit
-                #print('yo we done yet?',p[0]*self.c.side,' out of like ', self.c.side**2)
+                print(p[0]*self.c.side,' out of ', self.c.side**2)
                 screen.append(p)
         print('frame done')
         return screen
     
     def buildObjects(self):
         collidePoints = []
-        for obj in getattr(self.move,'objects', self.c.objects):
+        points = getattr(self.move,'objects', self.c.objects)
+        for obj in points:
             print(obj)
             radius = obj[1]
             for phi in range(0,180,15):

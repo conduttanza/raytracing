@@ -18,7 +18,7 @@ class movement():
         self.v1 = init_v1
         self.v2 = init_v2
 
-        self.dt = 0.01        # timestep
+        self.dt = 0.1       # timestep
         self.G  = 10        # gravitational constant (choose 1 for simplicity)
 
         Thread(target=self.run, daemon=True).start()

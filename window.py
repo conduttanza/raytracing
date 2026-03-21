@@ -28,7 +28,7 @@ class Window():
                 self.main()
                 
                 pygame.display.flip()
-                self.clock.tick(15)
+                self.clock.tick(1)
         except KeyboardInterrupt:
             pygame.quit()
             
